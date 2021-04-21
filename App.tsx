@@ -7,6 +7,7 @@ import { StatusBar } from 'react-native';
 import { Welcome } from './src/pages/Welcome';
 import AppLoading from 'expo-app-loading';
 import { UserIdentification } from './src/pages/UserIdentification';
+import { Confimation } from './src/pages/Confirmation';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
@@ -22,7 +23,8 @@ export default function App() {
       <StatusBar barStyle='dark-content' backgroundColor='transparent'
       />
       {/* <Welcome /> */}
-      <UserIdentification />
+      {/* <UserIdentification /> */}
+      <Confimation />
     </>
   )
 }
