@@ -1,62 +1,73 @@
 import React from 'react';
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import colors from '../../styles/colors';
-import phonePlantImg from '../assets/phoneplant.png';
 import { Feather } from '@expo/vector-icons';
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import colors from '../styles/colors';
+import phonePlantImg from '../assets/phoneplant.png';
+import fonts from '../styles/fonts';
 
 export function Welcome() {
 
   return (
     <SafeAreaView style={ styles.container }>
+      <View style={ styles.wrapper }>
 
-      <Text style={ styles.title }>
-        Gerencie{ '\n' }
-        suas plantas{ '\n' }
-        de forma fácil
+        <Text style={ styles.title }>
+          Gerencie{ '\n' }
+        suas plantas de{ '\n' }
+        forma fácil
       </Text>
 
-      <Image
-        source={ phonePlantImg }
-        style={ styles.image }
-        resizeMode='contain'
-      />
+        <Image
+          source={ phonePlantImg }
+          style={ styles.image }
+          resizeMode='contain'
+        />
 
-      <Text style={ styles.subtitle }>
-        Não esqueça mais de regar suas{ '\n' }
+        <Text style={ styles.subtitle }>
+          Não esqueça mais de regar suas{ '\n' }
         plantas. Nós cuidamos de lembrar você{ '\n' }
         sempre que precisar.
       </Text>
 
-      <TouchableOpacity
-        style={ styles.button }
-        activeOpacity={ 0.7 }
-      >
-        <Feather
-          name='chevron-right'
-          style={ styles.buttonIcon }
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.button }
+          activeOpacity={ 0.7 }
+        >
+          <Feather
+            name='chevron-right'
+            style={ styles.buttonIcon }
+          />
+        </TouchableOpacity>
 
+      </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+
+  wrapper: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginVertical: 28
+    paddingVertical: 28
   },
 
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontFamily: fonts.heading,
+    lineHeight: 34,
+    fontSize: 28,
+    // fontWeight: 'bold',
     textAlign: 'center',
     color: colors.heading,
   },
 
   subtitle: {
+    fontFamily: fonts.text,
+    lineHeight: 25,
     textAlign: 'center',
     fontSize: 18,
     paddingHorizontal: 20,
