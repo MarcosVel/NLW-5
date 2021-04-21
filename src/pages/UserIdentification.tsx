@@ -1,5 +1,6 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button } from '../components/Button'
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
 
@@ -7,20 +8,34 @@ export function UserIdentification() {
 
   return (
     <SafeAreaView style={ styles.container }>
-      <View style={ styles.content }>
-        <View style={ styles.form }>
-          <Text style={ styles.emoji }>😄</Text>
+      <KeyboardAvoidingView
+        style={ styles.container }
+        behavior={ Platform.OS === 'ios' ? 'padding' : 'height' }
+      >
+        <View style={ styles.content }>
+          <View style={ styles.form }>
 
-          <Text style={ styles.title }>
-            Como podemos{ '\n' }
-            chamar você?
-          </Text>
+            <View style={ styles.header }>
+              <Text style={ styles.emoji }>😄</Text>
 
-          <TextInput
-            style={ styles.input }
-          />
+              <Text style={ styles.title }>
+                Como podemos{ '\n' }
+                chamar você?
+              </Text>
+            </View>
+
+            <TextInput
+              style={ styles.input }
+              placeholder='Digite um nome'
+            />
+
+            <View style={ styles.footer }>
+              <Button />
+            </View>
+
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
@@ -45,6 +60,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  header: {
+    alignItems: 'center',
+  },
+
   emoji: {
     fontSize: 44
   },
@@ -55,7 +74,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.heading,
     fontFamily: fonts.heading,
-    marginTop: 20
+    marginTop: 24
   },
 
   input: {
@@ -64,8 +83,14 @@ const styles = StyleSheet.create({
     color: colors.heading,
     width: '100%',
     fontSize: 18,
-    marginTop: 50,
+    marginTop: 40,
     padding: 10,
     textAlign: 'center',
+  },
+
+  footer: {
+    marginTop: 40,
+    width: '100%',
+    paddingHorizontal: 20
   }
 })
