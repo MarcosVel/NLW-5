@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import colors from '../../styles/colors';
-import wateringImg from '../assets/watering.png';
-import { Button } from '../components/Button';
+import phonePlantImg from '../assets/phoneplant.png';
+import { Feather } from '@expo/vector-icons';
 
 export function Welcome() {
 
@@ -15,7 +15,11 @@ export function Welcome() {
         de forma fácil
       </Text>
 
-      <Image source={ wateringImg } style={ styles.image } />
+      <Image
+        source={ phonePlantImg }
+        style={ styles.image }
+        resizeMode='contain'
+      />
 
       <Text style={ styles.subtitle }>
         Não esqueça mais de regar suas{ '\n' }
@@ -23,7 +27,15 @@ export function Welcome() {
         sempre que precisar.
       </Text>
 
-      <Button title='>' />
+      <TouchableOpacity
+        style={ styles.button }
+        activeOpacity={ 0.7 }
+      >
+        <Feather
+          name='chevron-right'
+          style={ styles.buttonIcon }
+        />
+      </TouchableOpacity>
 
     </SafeAreaView>
   )
@@ -33,7 +45,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    marginVertical: 28
   },
 
   title: {
@@ -41,7 +54,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: colors.heading,
-    marginTop: 38
   },
 
   subtitle: {
@@ -52,8 +64,21 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 292,
-    height: 284,
+    height: Dimensions.get('window').width * 0.7,
+  },
 
+  button: {
+    backgroundColor: colors.green,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    marginBottom: 10,
+    height: 56,
+    width: 56,
+  },
+
+  buttonIcon: {
+    color: colors.white,
+    fontSize: 32,
   }
 })
