@@ -58,15 +58,16 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     textAlign: 'center',
     color: colors.heading,
-    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
 
   emoji: {
-    fontSize: 32,
+    fontSize: 78,
   },
 
   footer: {
     width: '100%',
-    paddingHorizontal: 75,
+    paddingHorizontal: 50,
+    marginTop: 20
   }
 })
