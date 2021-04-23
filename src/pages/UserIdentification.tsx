@@ -1,15 +1,16 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { 
-  Keyboard, 
-  KeyboardAvoidingView, 
+import {
+  Keyboard,
+  KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Platform, 
-  SafeAreaView, 
-  StyleSheet, 
-  Text, 
-  TextInput, 
-  View } from 'react-native'
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
+} from 'react-native'
 import { Button } from '../components/Button'
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
@@ -51,13 +52,13 @@ export function UserIdentification() {
 
               <View style={ styles.header }>
                 <Text style={ styles.emoji }>
-                  { isFilled ? '😄' : '🤔' }
+                  { isFilled ? '😉' : '🤔' }
                 </Text>
 
                 <Text style={ styles.title }>
                   Como podemos{ '\n' }
-                chamar você?
-              </Text>
+                  chamar você?
+                </Text>
               </View>
 
               <TextInput
