@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { EnvironmentButton } from '../components/EnvironmentButton';
 import { Header } from '../components/Header';
+import { PlantCardPrimary } from '../components/PlantCardPrimary';
 import api from '../services/api';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -11,8 +12,22 @@ interface EnvironmentProps {
   title: string;
 }
 
+interface PlantsProps {
+  id: string;
+  name: string;
+  about: string;
+  water_tips: string;
+  photo: string;
+  environments: [ string ];
+  frequency: {
+    times: number;
+    repeat_every: string;
+  }
+}
+
 export function PlantSelect() {
   const [ environments, setEnvironments ] = useState<EnvironmentProps[]>();
+  const [ plants, setPlants ] = useState<PlantsProps[]>();
 
   useEffect(() => {
     async function fetchEnvironment() {
@@ -27,7 +42,16 @@ export function PlantSelect() {
     }
 
     fetchEnvironment();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    async function fetchPlants() {
+      const { data } = await api.get('plants');
+      setPlants(data);
+    }
+
+    fetchPlants();
+  }, []);
 
   return (
     <View style={ styles.container }>
@@ -48,6 +72,19 @@ export function PlantSelect() {
             <EnvironmentButton
               title={ item.title }
 
+            />
+          ) }
+        />
+      </View>
+
+      <View style={ styles.plants }>
+        <FlatList
+          showsVerticalScrollIndicator={ false }
+          numColumns={ 2 }
+          data={ plants }
+          renderItem={ ({ item }) => (
+            <PlantCardPrimary
+              data={ item }
             />
           ) }
         />
@@ -88,5 +125,11 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginVertical: 32,
     paddingRight: 60
-  }
+  },
+
+  plants: {
+    flex: 1,
+    paddingHorizontal: 32,
+    justifyContent: 'center',
+  },
 })
