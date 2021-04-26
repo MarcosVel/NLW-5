@@ -28,6 +28,11 @@ interface PlantsProps {
 export function PlantSelect() {
   const [ environments, setEnvironments ] = useState<EnvironmentProps[]>();
   const [ plants, setPlants ] = useState<PlantsProps[]>();
+  const [ environmentsSelected, setEnvironmentsSelected ] = useState('all');
+
+  function handleEnvironmentSelected(environment: string) {
+    setEnvironmentsSelected(environment);
+  }
 
   useEffect(() => {
     async function fetchEnvironment() {
@@ -46,7 +51,7 @@ export function PlantSelect() {
 
   useEffect(() => {
     async function fetchPlants() {
-      const { data } = await api.get('plants');
+      const { data } = await api.get('plants?_sort=name&_order=asc');
       setPlants(data);
     }
 
@@ -71,7 +76,8 @@ export function PlantSelect() {
           renderItem={ ({ item }) => (
             <EnvironmentButton
               title={ item.title }
-
+              active={ item.key === environmentsSelected }
+              onPress={ () => handleEnvironmentSelected(item.key) }
             />
           ) }
         />
