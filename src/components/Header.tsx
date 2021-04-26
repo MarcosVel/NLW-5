@@ -8,7 +8,7 @@ export function Header() {
     <View style={ styles.container }>
       <View>
         <Text style={ styles.greeting }>Olá,</Text>
-        <Text style={ styles.userName }>Renata</Text>
+        <Text style={ styles.userName }>Marcos</Text>
       </View>
       <Image
         source={ { uri: 'https://avatars.githubusercontent.com/u/62637265?v=4' } }
