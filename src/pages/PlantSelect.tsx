@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { EnvironmentButton } from '../components/EnvironmentButton';
 import { Header } from '../components/Header';
+import { Load } from '../components/Load';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
 import api from '../services/api';
 import colors from '../styles/colors';
@@ -12,7 +13,7 @@ interface EnvironmentProps {
   title: string;
 }
 
-interface PlantsProps {
+interface PlantProps {
   id: string;
   name: string;
   about: string;
@@ -27,14 +28,15 @@ interface PlantsProps {
 
 export function PlantSelect() {
   const [ environments, setEnvironments ] = useState<EnvironmentProps[]>([]);
-  const [ plants, setPlants ] = useState<PlantsProps[]>([]);
-  const [ filteredPlants, setFilteredPlants ] = useState<PlantsProps[]>([]);
-  const [ environmentsSelected, setEnvironmentsSelected ] = useState('all');
+  const [ plants, setPlants ] = useState<PlantProps[]>([]);
+  const [ filteredPlants, setFilteredPlants ] = useState<PlantProps[]>([]);
+  const [ environmentSelected, setEnvironmentSelected ] = useState('all');
+  const [ loading, setLoading ] = useState(true);
 
   function handleEnvironmentSelected(environment: string) {
-    setEnvironmentsSelected(environment);
+    setEnvironmentSelected(environment);
 
-    if (environment === 'all')
+    if (environment == 'all')
       return setFilteredPlants(plants);
 
     const filtered = plants.filter(plant =>
@@ -63,10 +65,15 @@ export function PlantSelect() {
     async function fetchPlants() {
       const { data } = await api.get('plants?_sort=name&_order=asc');
       setPlants(data);
+      setFilteredPlants(data);
+      setLoading(false);
     }
 
     fetchPlants();
   }, []);
+
+  if (loading)
+    return <Load />
 
   return (
     <View style={ styles.container }>
@@ -86,7 +93,7 @@ export function PlantSelect() {
           renderItem={ ({ item }) => (
             <EnvironmentButton
               title={ item.title }
-              active={ item.key === environmentsSelected }
+              active={ item.key === environmentSelected }
               onPress={ () => handleEnvironmentSelected(item.key) }
             />
           ) }
