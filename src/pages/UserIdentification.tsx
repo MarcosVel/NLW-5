@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  Alert
 } from 'react-native'
 import { Button } from '../components/Button'
 import colors from '../styles/colors'
@@ -37,7 +38,10 @@ export function UserIdentification() {
   }
 
   function handleSubmit() {
-    navigation.navigate('Confimation');
+    if (!name)
+    return Alert.alert('Digite seu nome 😉');
+
+    navigation.navigate('Confirmation');
   }
 
   return (

@@ -10,7 +10,7 @@ import { Button } from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-export function Confimation() {
+export function Confirmation() {
   const navigation = useNavigation();
 
   function handleMoveOn() {
