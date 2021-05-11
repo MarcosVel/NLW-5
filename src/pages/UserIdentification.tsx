@@ -42,9 +42,12 @@ export function UserIdentification() {
     if (!name)
       return Alert.alert('Digite seu nome 😉');
     
-    await AsyncStorage.setItem('@plantmanager:user', name);
-
-    navigation.navigate('Confirmation');
+    try { 
+      await AsyncStorage.setItem('@plantmanager:user', name);
+      navigation.navigate('Confirmation');
+    } catch {
+      Alert.alert('Não foi possível salvar seu nome 😢');
+    }
   }
 
   return (
