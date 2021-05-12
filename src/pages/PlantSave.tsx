@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { useRoute } from '@react-navigation/core';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+import { useRoute } from '@react-navigation/core';
+import { format, isBefore } from 'date-fns';
+import React, { useState } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
+  Alert, 
   Image,
   Platform,
-  Alert
+  StyleSheet,
+  Text, 
+  View
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgFromUri } from 'react-native-svg';
-import { Button } from '../components/Button';
 import waterDrop from '../assets/waterdrop.png';
+import { Button } from '../components/Button';
+import { PlantProps, savePlant } from '../libs/storage';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
-import { format, isBefore } from 'date-fns';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { loadPlant, PlantProps, savePlant } from '../libs/storage';
 
 interface Params {
   plant: PlantProps;
@@ -89,7 +89,7 @@ export function PlantSave() {
 
         <Text style={ styles.alertLabel }>
           Escolha o melhor horário para ser lembrado:
-        </Text>
+            </Text>
 
         {
           showDatePicker && (
@@ -143,9 +143,7 @@ const styles = StyleSheet.create({
 
   controller: {
     backgroundColor: colors.white,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 20
+    padding: 20,
   },
 
   plantName: {
@@ -160,7 +158,9 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     color: colors.heading,
     fontSize: 17,
+    // marginVertical: 10,
     marginTop: 10,
+    marginBottom: 30
   },
 
   tipContainer: {
@@ -193,13 +193,16 @@ const styles = StyleSheet.create({
     fontFamily: fonts.complement,
     color: colors.heading,
     fontSize: 13,
+    // marginTop: -30,
     marginBottom: 5
   },
 
   dateTimePickerButton: {
     width: '100%',
     alignItems: 'center',
-    paddingVertical: 40,
+    // paddingVertical: 30,
+    paddingTop: 20,
+    paddingBottom: 30,
   },
 
   dateTimePickerText: {
