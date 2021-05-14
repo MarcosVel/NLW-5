@@ -20,13 +20,13 @@ export function MyPlants() {
       const plantsStoraged = await loadPlant();
 
       const nextTime = formatDistance(
-        new Date(plantsStoraged[ 0 ].dateTimeNotification).getTime(),
+        new Date(plantsStoraged[0].dateTimeNotification).getTime(),
         new Date().getTime(),
         { locale: pt }
       );
 
       setNextWatered(
-        `Não esqueça de regar a ${plantsStoraged[ 0 ].name} às ${nextTime} horas.`
+        `Não esqueça de regar a ${plantsStoraged[0].name} à ${nextTime} horas.`
       )
 
       setMyPlants(plantsStoraged);
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
-    paddingTop: 50,
     backgroundColor: colors.background,
   },
 
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.blue,
     paddingHorizontal: 20,
-    textAlign: 'justify',
+    // textAlign: 'justify',
     fontFamily: fonts.text,
     fontSize: 17
   },

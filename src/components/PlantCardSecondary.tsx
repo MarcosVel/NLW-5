@@ -28,10 +28,10 @@ export const PlantCardSecondary = ({ data, ...rest }: PlantProps) => {
         { data.name }
       </Text>
       <View style={ styles.details }>
-        <Text style={ styles.time }>
+        <Text style={ styles.timeLabel }>
           Regar às
         </Text>
-        <Text style={ styles.timeLabel }>
+        <Text style={ styles.time }>
           { data.hour }
         </Text>
       </View>
