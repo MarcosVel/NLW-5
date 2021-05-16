@@ -144,7 +144,7 @@ export function PlantSave() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'space-between',
     backgroundColor: colors.shape,
   },
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
   controller: {
     backgroundColor: colors.white,
     padding: 20,
+    paddingBottom: 40
   },
 
   plantName: {
@@ -175,7 +176,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     color: colors.heading,
     fontSize: 17,
-    // marginVertical: 10,
     marginTop: 10,
     marginBottom: 30
   },
@@ -210,7 +210,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.complement,
     color: colors.heading,
     fontSize: 13,
-    // marginTop: -30,
     marginBottom: 5
   },
 
