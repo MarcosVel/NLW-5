@@ -56,15 +56,27 @@ export async function loadPlant(): Promise<PlantProps[]> {
           hour: format(new Date(plants[ plant ].data.dateTimeNotification), 'HH:mm')
         }
       })
-      .sort((a, b) => 
+      .sort((a, b) =>
         Math.floor(
           new Date(a.dateTimeNotification).getTime() / 1000 -
           Math.floor(new Date(b.dateTimeNotification).getTime() / 1000)
         )
       );
 
-      return plantsSorted;
+    return plantsSorted;
   } catch (error) {
     throw new Error(error);
   }
+}
+
+export async function removePlant(id: string): Promise<void> {
+  const data = await AsyncStorage.getItem('@plantmanager:plants');
+  const plants = data ? (JSON.parse(data) as StoragePlantProps) : {};
+
+  delete plants[ id ];
+
+  await AsyncStorage.setItem(
+    '@plantmanager:plants',
+    JSON.stringify(plants)
+  );
 }
