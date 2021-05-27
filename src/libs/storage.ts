@@ -23,6 +23,15 @@ export interface StoragePlantProps {
 
 export async function savePlant(plant: PlantProps): Promise<void> {
   try {
+    const nextTime = new Date(plant.dateTimeNotification);
+    const now = new Date();
+
+    const { times, repeat_every } = plant.frequency;
+    if (repeat_every == 'weekly') {
+      const interval = Math.trunc(7 / times);
+      nextTime.setDate(now.getDate() + interval);
+    }
+
     const data = await AsyncStorage.getItem('@plantmanager:plants');
     const oldPlants = data ? (JSON.parse(data) as StoragePlantProps) : {};
 
